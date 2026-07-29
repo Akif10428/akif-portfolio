@@ -33,10 +33,12 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_META_PIXEL_ID: ${{ vars.VITE_META_PIXEL_ID || '3393551357410244' }}
-          VITE_MESSENGER_HREF: ${{ vars.VITE_MESSENGER_HREF || 'https://m.me/akifratul' }}
-          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL || 'akifratul@gmail.com' }}
-          VITE_WHATSAPP_NUMBER: ${{ vars.VITE_WHATSAPP_NUMBER || '8801622670612' }}
+          # Public site config (safe in build output)
+          VITE_META_PIXEL_ID: '3393551357410244'
+          VITE_MESSENGER_HREF: 'https://m.me/akifratul'
+          VITE_CONTACT_EMAIL: 'akifratul@gmail.com'
+          VITE_WHATSAPP_NUMBER: '8801622670612'
+          # Add later in repo Secrets (Settings → Secrets and variables → Actions)
           VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
           VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT }}
           VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
