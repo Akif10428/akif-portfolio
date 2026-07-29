@@ -1,0 +1,50 @@
+.current-focus {
+  padding: clamp(3.5rem, 9vw, 6rem) clamp(1.25rem, 4vw, 3rem);
+  background:
+    linear-gradient(180deg, #f3efe8 0%, #ebe4d8 100%);
+  color: var(--ink);
+}
+
+.current-focus__inner {
+  max-width: 40rem;
+  animation: rise-in 0.8s ease-out both;
+}
+
+.current-focus__label {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 55%, var(--teal));
+}
+
+.current-focus__headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.current-focus__audience {
+  margin: 1.5rem 0 0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.current-focus__summary {
+  margin: 1rem 0 1.75rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--ink) 78%, transparent);
+}
+
+.current-focus .btn--primary {
+  background: var(--ink);
+  color: var(--fog);
+}
+
+.current-focus .btn--primary:hover {
+  background: color-mix(in srgb, var(--ink) 88%, var(--ember));
+}
