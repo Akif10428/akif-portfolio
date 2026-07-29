@@ -1,3 +1,5 @@
+import { site } from '../content/site'
+
 declare global {
   interface Window {
     dataLayer?: unknown[]
@@ -14,7 +16,7 @@ declare global {
 }
 
 const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID
-const pixelId = import.meta.env.VITE_META_PIXEL_ID
+const pixelId = import.meta.env.VITE_META_PIXEL_ID || site.metaPixelId
 
 function loadScript(src: string, id: string) {
   if (document.getElementById(id)) return

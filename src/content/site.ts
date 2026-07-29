@@ -8,6 +8,16 @@ export const site = {
   whatsappDisplay: '01622-670612',
   address: '1179 Sohag Tower, Nurercala Bazar Road, Vatara 1212, Dhaka, Bangladesh',
   portrait: '/images/akif-portrait.png',
+  /** Meta Pixel ID (Akif Hossain's Pixel) — public in page source; env can override */
+  metaPixelId: '3393551357410244',
+  /**
+   * Personal Facebook profile username (from facebook.com/USERNAME).
+   * Messenger chat uses m.me — works for profiles with messaging enabled.
+   * Example: if profile is facebook.com/akif.hossen → use "akif.hossen"
+   */
+  facebookProfileUsername: 'akifratul',
+  /** Optional full Messenger URL override, e.g. https://m.me/username */
+  facebookMessengerHref: 'https://m.me/akifratul',
 }
 
 export const travelPhotos = [

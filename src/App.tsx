@@ -8,6 +8,7 @@ import { Hero } from './components/Hero'
 import { Services } from './components/Services'
 import { Work } from './components/Work'
 import { WhyMe } from './components/WhyMe'
+import { MessengerFloat } from './components/MessengerFloat'
 import { initAnalytics } from './lib/analytics'
 import './App.css'
 
@@ -29,6 +30,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <MessengerFloat />
     </>
   )
 }

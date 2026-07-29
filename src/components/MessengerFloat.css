@@ -1,0 +1,59 @@
+.messenger-float {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.05rem 0.75rem 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0084ff 0%, #006aff 100%);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  box-shadow: 0 10px 28px rgba(0, 106, 255, 0.35);
+  animation: messenger-rise 0.55s ease-out both;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.messenger-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 106, 255, 0.42);
+}
+
+.messenger-float svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+}
+
+@keyframes messenger-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .messenger-float span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .messenger-float {
+    width: 3.25rem;
+    height: 3.25rem;
+    padding: 0;
+    justify-content: center;
+    border-radius: 999px;
+  }
+}
