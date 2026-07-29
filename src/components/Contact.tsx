@@ -6,7 +6,8 @@ import { trackLead } from '../lib/analytics'
 import './Contact.css'
 
 const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined
-const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined
+const recaptchaSiteKey =
+  (import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined) || site.recaptchaSiteKey
 const whatsappNumber =
   (import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined) || site.whatsapp
 const contactEmail =

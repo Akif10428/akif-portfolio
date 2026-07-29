@@ -20,6 +20,8 @@ export const site = {
   facebookProfileUsername: 'akifratul',
   /** Optional full Messenger URL override, e.g. https://m.me/username */
   facebookMessengerHref: 'https://m.me/akifratul',
+  /** Google reCAPTCHA v2 site key (public) */
+  recaptchaSiteKey: '6Ldo5WotAAAAANh1J9enRhPCplKSiHb3QSRbtNHo',
 }
 
 export const travelPhotos = [
