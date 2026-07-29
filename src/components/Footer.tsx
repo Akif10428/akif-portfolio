@@ -10,7 +10,7 @@ export function Footer() {
       <div className="site-footer__main">
         <p className="site-footer__brand">{site.name}</p>
         <p className="site-footer__meta">
-          © {year} · SQA Manager at BJIT · Photography & traveling
+          © {year} Akif Hossen
         </p>
       </div>
       <div className="site-footer__contact">
