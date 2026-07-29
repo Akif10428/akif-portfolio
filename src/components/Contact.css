@@ -146,6 +146,29 @@
   cursor: wait;
 }
 
+.contact__field-error {
+  margin: -0.5rem 0 0;
+  font-size: 0.88rem;
+  color: #8a2e2e;
+}
+
+.contact__success {
+  display: grid;
+  gap: 1.25rem;
+  padding: 2rem 1.5rem;
+  background: color-mix(in srgb, var(--teal) 12%, #fff);
+  border: 1px solid color-mix(in srgb, var(--teal) 30%, transparent);
+  border-radius: 12px;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.contact__success p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--teal-deep);
+}
+
 @media (min-width: 900px) {
   .contact__grid {
     grid-template-columns: 1fr 1fr;

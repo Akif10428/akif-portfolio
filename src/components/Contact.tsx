@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react'
-import type { FormEvent } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { site } from '../content/site'
 import { trackLead } from '../lib/analytics'
 import './Contact.css'
 
-const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined
+const FORMSPREE_ID = 'xwvgzkkl'
 const recaptchaSiteKey =
   (import.meta.env.VITE_RECAPTCHA_SITE_KEY as string | undefined) || site.recaptchaSiteKey
 const whatsappNumber =
@@ -13,72 +13,38 @@ const whatsappNumber =
 const contactEmail =
   (import.meta.env.VITE_CONTACT_EMAIL as string | undefined) || site.email
 
-type Status = 'idle' | 'submitting' | 'success' | 'error'
-
 export function Contact() {
+  const [state, handleFormspreeSubmit] = useForm(FORMSPREE_ID)
   const captchaRef = useRef<ReCAPTCHA>(null)
-  const [status, setStatus] = useState<Status>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [captchaError, setCaptchaError] = useState('')
 
   const whatsappHref = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}`
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  if (state.succeeded) {
+    trackLead()
+  }
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setErrorMessage('')
+    setCaptchaError('')
 
-    const form = event.currentTarget
     const captchaToken = captchaRef.current?.getValue()
-
     if (recaptchaSiteKey && !captchaToken) {
-      setStatus('error')
-      setErrorMessage('Please complete the reCAPTCHA checkbox.')
+      setCaptchaError('Please complete the reCAPTCHA checkbox.')
       return
     }
 
-    if (!formspreeEndpoint) {
-      setStatus('error')
-      setErrorMessage(
-        'Form endpoint is not configured yet. Set VITE_FORMSPREE_ENDPOINT in your .env file, or message me on WhatsApp.',
-      )
-      return
-    }
-
-    const data = new FormData(form)
-    if (captchaToken) {
-      data.set('g-recaptcha-response', captchaToken)
-    }
-
-    setStatus('submitting')
-
-    try {
-      const response = await fetch(formspreeEndpoint, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
-      })
-
-      if (!response.ok) {
-        throw new Error('Submission failed')
-      }
-
-      trackLead()
-      setStatus('success')
-      form.reset()
-      captchaRef.current?.reset()
-    } catch {
-      setStatus('error')
-      setErrorMessage('Something went wrong. Please try again or reach out on WhatsApp.')
-      captchaRef.current?.reset()
-    }
+    await handleFormspreeSubmit(event)
+    captchaRef.current?.reset()
   }
 
   return (
     <section className="contact" id="contact" aria-labelledby="contact-heading">
       <div className="contact__grid">
         <div className="contact__intro">
-          <h2 id="contact-heading">Let’s talk about your website</h2>
+          <h2 id="contact-heading">Let's talk about your website</h2>
           <p>
-            Tell me about your business and Facebook Page. I’ll reply with next steps for a
+            Tell me about your business and Facebook Page. I'll reply with next steps for a
             practical site that helps customers find and contact you.
           </p>
           <ul className="contact__details">
@@ -104,49 +70,67 @@ export function Contact() {
           </div>
         </div>
 
-        <form className="contact__form" onSubmit={handleSubmit} noValidate>
-          <label>
-            Name
-            <input name="name" type="text" required autoComplete="name" />
-          </label>
-          <label>
-            Business name
-            <input name="business" type="text" required autoComplete="organization" />
-          </label>
-          <label>
-            Phone or email
-            <input name="reply_to" type="text" required autoComplete="email" />
-          </label>
-          <label>
-            What do you need?
-            <textarea name="message" rows={4} required placeholder="Website for my Facebook business…" />
-          </label>
+        {state.succeeded ? (
+          <div className="contact__success" role="status">
+            <p>Thanks — your message was sent! I'll get back to you soon.</p>
+            <a className="btn btn--primary" href={whatsappHref} target="_blank" rel="noreferrer">
+              Also message on WhatsApp
+            </a>
+          </div>
+        ) : (
+          <form className="contact__form" onSubmit={handleSubmit} noValidate>
+            <label>
+              Name
+              <input name="name" type="text" required autoComplete="name" />
+            </label>
+            <ValidationError field="name" errors={state.errors} className="contact__field-error" />
 
-          {recaptchaSiteKey ? (
-            <div className="contact__captcha">
-              <ReCAPTCHA ref={captchaRef} sitekey={recaptchaSiteKey} theme="light" />
-            </div>
-          ) : (
-            <p className="contact__hint">
-              Add <code>VITE_RECAPTCHA_SITE_KEY</code> to enable Google reCAPTCHA v2.
-            </p>
-          )}
+            <label>
+              Business name
+              <input name="business" type="text" required autoComplete="organization" />
+            </label>
+            <ValidationError field="business" errors={state.errors} className="contact__field-error" />
 
-          <button className="btn btn--primary" type="submit" disabled={status === 'submitting'}>
-            {status === 'submitting' ? 'Sending…' : 'Send inquiry'}
-          </button>
+            <label>
+              Phone or email
+              <input name="reply_to" type="text" required autoComplete="email" />
+            </label>
+            <ValidationError field="reply_to" errors={state.errors} className="contact__field-error" />
 
-          {status === 'success' ? (
-            <p className="contact__status contact__status--ok" role="status">
-              Thanks — your message was sent. I’ll get back to you soon.
-            </p>
-          ) : null}
-          {status === 'error' ? (
-            <p className="contact__status contact__status--err" role="alert">
-              {errorMessage}
-            </p>
-          ) : null}
-        </form>
+            <label>
+              What do you need?
+              <textarea
+                name="message"
+                rows={4}
+                required
+                placeholder="Website for my Facebook business…"
+              />
+            </label>
+            <ValidationError field="message" errors={state.errors} className="contact__field-error" />
+
+            {recaptchaSiteKey ? (
+              <div className="contact__captcha">
+                <ReCAPTCHA ref={captchaRef} sitekey={recaptchaSiteKey} theme="light" />
+              </div>
+            ) : null}
+
+            {captchaError ? (
+              <p className="contact__status contact__status--err" role="alert">
+                {captchaError}
+              </p>
+            ) : null}
+
+            <ValidationError errors={state.errors} className="contact__status contact__status--err" />
+
+            <button
+              className="btn btn--primary"
+              type="submit"
+              disabled={state.submitting}
+            >
+              {state.submitting ? 'Sending…' : 'Send inquiry'}
+            </button>
+          </form>
+        )}
       </div>
     </section>
   )
