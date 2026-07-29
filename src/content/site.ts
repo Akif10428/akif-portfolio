@@ -1,3 +1,5 @@
+import { assetUrl } from '../lib/assets'
+
 export const site = {
   name: 'Akif Hossen',
   role: 'SQA Manager at BJIT',
@@ -7,7 +9,7 @@ export const site = {
   whatsapp: '8801622670612',
   whatsappDisplay: '01622-670612',
   address: '1179 Sohag Tower, Nurercala Bazar Road, Vatara 1212, Dhaka, Bangladesh',
-  portrait: '/images/akif-portrait.png',
+  portrait: assetUrl('images/akif-portrait.png'),
   /** Meta Pixel ID (Akif Hossain's Pixel) — public in page source; env can override */
   metaPixelId: '3393551357410244',
   /**
@@ -22,23 +24,23 @@ export const site = {
 
 export const travelPhotos = [
   {
-    src: '/images/travel-lake.jpg',
+    src: assetUrl('images/travel-lake.jpg'),
     alt: 'Misty mountain lake and village — landscape by Akif Hossen',
   },
   {
-    src: '/images/landscape-river.jpg',
+    src: assetUrl('images/landscape-river.jpg'),
     alt: 'River winding through green hills — landscape by Akif Hossen',
   },
   {
-    src: '/images/landscape-beach.jpg',
+    src: assetUrl('images/landscape-beach.jpg'),
     alt: 'Turquoise sea and limestone cliffs — landscape by Akif Hossen',
   },
   {
-    src: '/images/landscape-sea.jpg',
+    src: assetUrl('images/landscape-sea.jpg'),
     alt: 'Traditional boat on open water — landscape by Akif Hossen',
   },
   {
-    src: '/images/landscape-temple.jpg',
+    src: assetUrl('images/landscape-temple.jpg'),
     alt: 'Temple complex under blue sky — travel landscape by Akif Hossen',
   },
 ]
