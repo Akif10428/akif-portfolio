@@ -18,13 +18,6 @@ export function Hero() {
         />
       </div>
       <div className="hero__content">
-        <img
-          className="hero__portrait"
-          src={site.portrait}
-          alt={`${site.name}, SQA Manager at BJIT`}
-          width={320}
-          height={320}
-        />
         <p className="hero__role">{site.role}</p>
         <h1 id="hero-brand" className="hero__brand">
           {site.name}

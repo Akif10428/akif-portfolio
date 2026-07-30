@@ -48,17 +48,6 @@
   animation: rise-in 0.9s ease-out both;
 }
 
-.hero__portrait {
-  width: clamp(5.5rem, 14vw, 7.5rem);
-  height: clamp(5.5rem, 14vw, 7.5rem);
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 50%;
-  border: 2px solid color-mix(in srgb, var(--fog) 55%, transparent);
-  margin-bottom: 1.25rem;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
 .hero__role {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;

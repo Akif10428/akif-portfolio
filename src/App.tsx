@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { CurrentFocus } from './components/CurrentFocus'
 import { Footer } from './components/Footer'
@@ -25,7 +24,6 @@ function App() {
         <CurrentFocus />
         <Services />
         <WhyMe />
-        <About />
         <Work />
         <Contact />
       </main>

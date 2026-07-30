@@ -1,7 +1,7 @@
 import { assetUrl } from '../lib/assets'
 
 export const site = {
-  name: 'Akif Hossen',
+  name: 'AIT',
   role: 'SQA Manager at BJIT',
   tagline: '15+ years building quality into software — now helping businesses show up online.',
   email: 'akifratul@gmail.com',
@@ -9,13 +9,11 @@ export const site = {
   whatsapp: '8801622670612',
   whatsappDisplay: '01622-670612',
   address: '1179 Sohag Tower, Nurercala Bazar Road, Vatara 1212, Dhaka, Bangladesh',
-  portrait: assetUrl('images/akif-portrait.png'),
   /** Meta Pixel ID (Akif Hossain's Pixel) — public in page source; env can override */
   metaPixelId: '3393551357410244',
   /**
    * Personal Facebook profile username (from facebook.com/USERNAME).
    * Messenger chat uses m.me — works for profiles with messaging enabled.
-   * Example: if profile is facebook.com/akif.hossen → use "akif.hossen"
    */
   facebookProfileUsername: 'akifratul',
   /** Optional full Messenger URL override, e.g. https://m.me/username */
@@ -54,11 +52,6 @@ export const services = [
       'A clear, fast site that explains what you sell and how to reach you — built for phones first.',
   },
   {
-    title: 'Facebook Page–ready',
-    description:
-      'Designed so your Page, ads, and website tell the same story and send visitors to one place to act.',
-  },
-  {
     title: 'Contact & WhatsApp',
     description:
       'Easy ways for customers to message you — form, call, or WhatsApp — without friction.',
@@ -87,15 +80,6 @@ export const whyMe = [
       'No bloated agency package. A practical site that helps your Facebook audience become customers.',
   },
 ]
-
-export const about = {
-  title: 'About',
-  paragraphs: [
-    'I am Akif Hossen, working at BJIT as an SQA Manager with more than fifteen years of experience in software quality and delivery.',
-    'Outside work, photography and traveling keep me curious — noticing light, places, and stories. That same eye for clarity shows up in the websites I help people launch.',
-  ],
-  hobbies: ['Photography', 'Traveling'],
-}
 
 export const workSamples = [
   {
